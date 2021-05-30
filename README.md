@@ -34,4 +34,3 @@ $ docker inspect -f '{{ .Config.Hostname }}' my-container
 6095273a4e9b
 ```
 
-ch
