@@ -32,9 +32,8 @@ pipeline {
     }
     stage('Update Service') {
       steps{
-        sh 'ls /home'
-        sh 'ls /home/ec2-user'
-        sh 'ls /home/ec2-user/jenkins'
+        sh 'echo $HOME'
+        sh 'pwd'
         sh "/home/ec2-user/jenkins/scripts/aws_update_service.sh $BUILD_NUMBER"
       }
     }
