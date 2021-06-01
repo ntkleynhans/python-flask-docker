@@ -5,6 +5,9 @@ pipeline {
     dockerImage = ''
   }
   agent any
+  options {
+    disableConcurrentBuilds()  
+  }
   stages {
     stage('Cloning Git') {
       steps {
@@ -22,10 +25,14 @@ pipeline {
       steps{
         script {
           docker.withRegistry( '', registryCredential ) {
-            dockerImage.push("$BUILD_NUMBER")
-             dockerImage.push('latest')
+            dockerImage.push("v_$BUILD_NUMBER")
           }
         }
+      }
+    }
+    stage('Update Service') {
+      steps{
+        sh "/home/ec2-user/jenkins/scripts/aws_update_service.sh $BUILD_NUMBER"
       }
     }
   }
