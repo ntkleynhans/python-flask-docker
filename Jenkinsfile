@@ -1,7 +1,7 @@
 pipeline {
   environment {
     imagename = "neilspand/flask-signup"
-    registryCredential = 'neilspand/flask-signup'
+    registryCredential = 'dockerhub'
     dockerImage = ''
   }
   agent any
